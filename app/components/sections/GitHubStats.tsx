@@ -51,6 +51,14 @@ export default function GitHubStats({
 }: GitHubStatsProps) {
   const [stats, setStats] = useState<Stats | null>(null);
   const [contributions, setContributions] = useState<Contribution[]>([]);
+  const [cellSize, setCellSize] = useState(13);
+
+  useEffect(() => {
+    const update = () => setCellSize(window.innerWidth < 640 ? 10 : 13);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     const u = _username || "ltyohannes955";
@@ -153,11 +161,12 @@ export default function GitHubStats({
               <h3 className="text-sm font-semibold mb-4 text-muted uppercase tracking-wider">
                 Contribution Activity
               </h3>
+              <div className="overflow-x-auto pb-1" style={{ scrollbarWidth: "thin" }}>
               <div
-                className="grid gap-[2px] pb-1"
+                className="grid gap-[2px] w-fit mx-auto"
                 style={{
-                  gridTemplateColumns: `repeat(${cols}, 13px)`,
-                  gridTemplateRows: `repeat(7, 13px)`,
+                  gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,
+                  gridTemplateRows: `repeat(7, ${cellSize}px)`,
                 }}
               >
                 {Array.from({ length: cols * rows }).map((_, i) => {
@@ -173,8 +182,8 @@ export default function GitHubStats({
                       <div
                         className="rounded-[2px] transition-all duration-150 group-hover:scale-[1.8] group-hover:z-10 group-hover:ring-1 group-hover:ring-accent"
                         style={{
-                          width: "13px",
-                          height: "13px",
+                          width: `${cellSize}px`,
+                          height: `${cellSize}px`,
                           backgroundColor: intensity
                             ? `rgba(45, 212, 191, ${intensity})`
                             : "rgba(255,255,255,0.04)",
@@ -189,6 +198,7 @@ export default function GitHubStats({
                     </div>
                   );
                 })}
+              </div>
               </div>
               {sliced.length > 0 && (
                 <p className="text-muted text-xs mt-2">

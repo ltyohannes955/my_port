@@ -52,10 +52,10 @@ function ProjectCard({
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       className="group relative rounded-2xl overflow-hidden border border-white/[0.06] cursor-default"
-      style={{ height: "460px", perspective: "1200px" }}
+      style={{ perspective: "1200px" }}
     >
       <div
-        className="relative w-full h-full transition-transform duration-500 ease-out"
+        className="relative w-full min-h-[320px] sm:min-h-[460px] transition-transform duration-500 ease-out"
         style={{
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
           transformStyle: "preserve-3d",

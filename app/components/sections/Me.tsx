@@ -85,7 +85,7 @@ export default function Me() {
             className="px-8 sm:px-10 pb-8 sm:pb-10 animate-fade-up opacity-0"
             style={{ animationDelay: "6.2s" }}
           >
-            <div className="flex items-center gap-4 pt-3 border-t border-white/[0.04]">
+            <div className="flex items-center gap-4 pt-3 border-t border-white/[0.04] flex-wrap">
               <a
                 href="#projects"
                 className="group relative inline-flex items-center gap-2 bg-accent text-background px-6 py-3 rounded-lg font-medium text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_0_24px_rgba(45,212,191,0.25)]"
